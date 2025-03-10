@@ -1,0 +1,27 @@
+class Solution {
+public:
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        
+        if(!root)return{};
+        queue<TreeNode*>BFSQueue;
+        BFSQueue.push(root);
+       vector<vector<int>> result;
+        while(!BFSQueue.empty()){
+            int levelSize = BFSQueue.size();
+            vector<int>levelNodes;
+            for(int i =0 ; i<levelSize;i++){
+                TreeNode*temp = BFSQueue.front();
+                 BFSQueue.pop();
+                 levelNodes.push_back(temp->val);
+                 if(temp->left){
+                BFSQueue.push(temp->left);
+            }
+            if(temp->right){
+                BFSQueue.push(temp->right);
+            }
+            }
+           result.push_back(levelNodes);
+        }
+        return result;
+    }
+};
