@@ -1,0 +1,18 @@
+class Solution {
+public:
+    bool isValidBST(TreeNode* root) {
+        return isValidBSTHelper(root, LONG_MIN, LONG_MAX);
+    }
+
+private:
+    bool isValidBSTHelper(TreeNode* root, long long lower, long long upper) {
+        if (root == nullptr) {
+            return true;  
+        } 
+        if (root->val <= lower || root->val >= upper) {
+            return false;
+        }
+        return isValidBSTHelper(root->left, lower, root->val) && 
+               isValidBSTHelper(root->right, root->val, upper);
+    }
+};
